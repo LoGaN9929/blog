@@ -1,22 +1,13 @@
-<html>
-    <head>
-        <title>Blog o Śwince</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Blog o Śwince</a></h1>
-        </div>
+{% extends 'blog/base.html' %}
 
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">Moja Świnka</a></h2>
-            <p>Pierwszy wpis</p>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
         </div>
-
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">Ślub z Świnką</a></h2>
-            <p>.....</p>
-        </div>
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
